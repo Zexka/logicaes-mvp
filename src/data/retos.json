@@ -1,0 +1,110 @@
+{
+  "retos": [
+    {
+      "id": 1,
+      "titulo": "Detector de Palíndromos",
+      "competencia": "Nivel 1: Lógica Base",
+      "habilidad": "Manipulación de Strings",
+      "etiquetas": ["Strings", "Punteros Básicos"],
+      "funcion": {
+        "nombre": "esPalindromo",
+        "parametros": ["texto"]
+      },
+      "descripcion": [
+        "Dado un <GlosarioTooltip palabraES='texto' traduccionEN='string'/>, determina si es un palíndromo (se lee igual de izquierda a derecha que de derecha a izquierda).",
+        "Debes ignorar los espacios y considerar las mayúsculas iguales a minúsculas."
+      ],
+      "codigoInicial": "function esPalindromo(texto) {\n  // Escribe tu código aquí\n  \n}",
+      "ejemplos": [
+        { "entrada": "\"Anita lava la tina\"", "salida": "true" },
+        { "entrada": "\"Hola mundo\"", "salida": "false" }
+      ],
+      "restricciones": [
+        "1 <= texto.length <= 10^5",
+        "Solo contiene caracteres alfanuméricos y espacios."
+      ],
+      "pistas": [
+        "¿Has considerado convertir todo el texto a minúsculas primero para que 'A' y 'a' sean lo mismo?",
+        "Puedes usar un método de JavaScript para reemplazar o quitar todos los espacios antes de comparar.",
+        "Una técnica común es usar dos <GlosarioTooltip palabraES='punteros' traduccionEN='pointers'/>: uno al inicio y otro al final, avanzando hacia el centro."
+      ],
+      "solucionOptima": "function esPalindromo(texto) {\n  const limpio = texto.replace(/[\\W_]/g, \"\").toLowerCase();\n  const invertido = limpio.split(\"\").reverse().join(\"\");\n  return limpio === invertido;\n}",
+      "complejidad": "Tiempo: O(n) porque iteramos sobre los caracteres de la cadena para limpiar, revertir y unir. Espacio: O(n) ya que creamos nuevas cadenas (limpio e invertido) en memoria.",
+      "testCases": [
+        { "id": 1, "input": ["Anita lava la tina"], "expected": true },
+        { "id": 2, "input": ["Hola mundo"], "expected": false },
+        { "id": 3, "input": ["Reconocer"], "expected": true }
+      ]
+    },
+    {
+      "id": 2,
+      "titulo": "Dos Sumas",
+      "competencia": "Nivel 2: Estructuras de Datos",
+      "habilidad": "Optimización con Diccionarios",
+      "etiquetas": ["Arreglos", "Tabla Hash"],
+      "funcion": {
+        "nombre": "dosSumas",
+        "parametros": ["nums", "objetivo"]
+      },
+      "descripcion": [
+        "Dado un <GlosarioTooltip palabraES='arreglo' traduccionEN='array'/> de números enteros <code>nums</code> y un número entero <code>objetivo</code>, devuelve los <GlosarioTooltip palabraES='índices' traduccionEN='indexes'/> de los dos números de manera que sumen el <code>objetivo</code>.",
+        "Asume que cada entrada tiene exactamente una solución."
+      ],
+      "codigoInicial": "function dosSumas(nums, objetivo) {\n  // Escribe tu código aquí\n  \n}",
+      "ejemplos": [
+        { "entrada": "nums = [2,7,11,15], objetivo = 9", "salida": "[0,1]" },
+        { "entrada": "nums = [3,2,4], objetivo = 6", "salida": "[1,2]" }
+      ],
+      "restricciones": [
+        "2 <= nums.length <= 10^4",
+        "Solo existe una respuesta válida."
+      ],
+      "pistas": [
+        "¿Has considerado cómo una estructura de pares clave-valor podría evitar que uses dos bucles anidados?",
+        "Puedes usar un Objeto (diccionario) para guardar los números que ya has visto junto con su índice.",
+        "Para cada número, calcula la diferencia necesaria para llegar al objetivo. Si la diferencia ya existe en tu diccionario, has encontrado la respuesta."
+      ],
+      "solucionOptima": "function dosSumas(nums, objetivo) {\n  const mapa = {};\n  for (let i = 0; i < nums.length; i++) {\n    const complemento = objetivo - nums[i];\n    if (complemento in mapa) return [mapa[complemento], i];\n    mapa[nums[i]] = i;\n  }\n}",
+      "complejidad": "Tiempo: O(n) porque recorremos el arreglo una sola vez (la búsqueda en un objeto es O(1)). Espacio: O(n) ya que el diccionario (Tabla Hash) almacena a lo mucho 'n' elementos.",
+      "testCases": [
+        { "id": 1, "input": [[2, 7, 11, 15], 9], "expected": [0, 1] },
+        { "id": 2, "input": [[3, 2, 4], 6], "expected": [1, 2] },
+        { "id": 3, "input": [[3, 3], 6], "expected": [0, 1] }
+      ]
+    },
+    {
+      "id": 3,
+      "titulo": "Secuencia de Paréntesis",
+      "competencia": "Nivel 3: Algoritmos Avanzados",
+      "habilidad": "Pilas (Stacks)",
+      "etiquetas": ["Strings", "Pilas"],
+      "funcion": {
+        "nombre": "esValido",
+        "parametros": ["s"]
+      },
+      "descripcion": [
+        "Dada una cadena que contiene solo los caracteres <code>'('</code>, <code>')'</code>, <code>'{'</code>, <code>'}'</code>, <code>'['</code> y <code>']'</code>, determina si la secuencia de apertura y cierre es válida."
+      ],
+      "codigoInicial": "function esValido(s) {\n  // Escribe tu código aquí\n  \n}",
+      "ejemplos": [
+        { "entrada": "\"()[]{}\"", "salida": "true" },
+        { "entrada": "\"(]\"", "salida": "false" }
+      ],
+      "restricciones": [
+        "1 <= s.length <= 10^4"
+      ],
+      "pistas": [
+        "Para problemas de coincidencia simétrica, usar una <GlosarioTooltip palabraES='pila' traduccionEN='stack'/> es la mejor estrategia.",
+        "Cada vez que veas un símbolo de apertura, guárdalo en tu arreglo (pila).",
+        "Si ves un símbolo de cierre, saca el último elemento de la pila y verifica si coinciden. Si no coinciden, es inválido."
+      ],
+      "solucionOptima": "function esValido(s) {\n  const pila = [];\n  const pares = { '(': ')', '[': ']', '{': '}' };\n  for (let char of s) {\n    if (pares[char]) pila.push(char);\n    else if (pares[pila.pop()] !== char) return false;\n  }\n  return pila.length === 0;\n}",
+      "complejidad": "Tiempo: O(n) porque procesamos cada carácter del string exactamente una vez. Espacio: O(n) en el peor caso, si todos los caracteres son de apertura y terminan ocupando espacio dentro de la pila.",
+      "testCases": [
+        { "id": 1, "input": ["()[]{}"], "expected": true },
+        { "id": 2, "input": ["(]"], "expected": false },
+        { "id": 3, "input": ["([{}])"], "expected": true }
+      ]
+    }
+  ]
+}
