@@ -78,6 +78,9 @@ export default function Console({ results, isLoading, onRunCode }) {
                 
                 <div className="text-xs sm:text-sm font-mono space-y-1 ml-5 sm:ml-7 bg-[#0f111a] p-2 rounded border border-gray-800">
                   <div className="text-gray-400 break-all">
+                    <span className="text-gray-500">Entrada:</span> {result.input}
+                  </div>
+                  <div className="text-gray-400 break-all">
                     <span className="text-gray-500">Actual:</span> {result.output}
                   </div>
                   {!result.passed && (

@@ -85,6 +85,7 @@ export const evaluateCode = async (userCode, reto) => {
         resolve({
           id: test.id,
           passed,
+          input: test.input.map(arg => JSON.stringify(arg)).join(', '),
           output,
           expected: JSON.stringify(test.expected),
           error: errorMsg,
